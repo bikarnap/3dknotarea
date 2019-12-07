@@ -1,0 +1,22 @@
+{
+  "name": "3dknotarea",
+  "version": "1.0.0",
+  "description": "",
+  "main": "area.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bikarnap/3dknotarea.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bikarnap/3dknotarea/issues"
+  },
+  "homepage": "https://github.com/bikarnap/3dknotarea#readme",
+  "dependencies": {
+    "vector-3": "^1.0.7"
+  }
+}
