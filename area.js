@@ -1,34 +1,38 @@
 /* Surface area calculation of a 3D knot object */
 
+// Solution using modules fs and vector-3
 var fs = require('fs');
 var vector3 = require('vector-3');
 
-var vertices = [['0', '0', '0']];
+var vertices = [['0', '0', '0']]; // origin vertex of triangle
 
+// Initializing x-, y-, and z-coordinates for any vertex
 var xCoord = [0];
 var yCoord = [0];
 var zCoord = [0];
 
+// Initially all the three vertices are empty
 var vertexA = "";
 var vertexB = ""; 
 var vertexC = "";
 
-var totalSurfaceArea = 0;
+var totalSurfaceArea = 0; // initially the surface are is 0
 var file = process.argv;
 var readFile = fs.readFile(file[2], 'utf8', (error, data) => {
     if(error) console.log(error.name, error.message);
     var tokens = data.split(/\s+/); 
 
-    var fposV = tokens.indexOf('v');
-    var fposF = tokens.indexOf('f');
+    var fposV = tokens.indexOf('v'); // first oocurance of 'v' in the .obj file
+    var fposF = tokens.indexOf('f'); // first occurance of 'f' in the .obj file
 
+    // loop to store the vertex coordinates
     for(var i = fposV; i < tokens.length; i++) {
         if(tokens[i] == 'v')
             vertices.push([tokens[i+1], tokens[i+2], tokens[i+3]]);
         
     }
-    //console.log(vertices.length);
-
+    
+    // loop to map the face indices with their corresponding vertices 
     for(var j = fposF; j < tokens.length; j++) {
         if(tokens[j] === 'f') {
             for(var k = 1; k < vertices.length; k++) {
@@ -54,6 +58,7 @@ var readFile = fs.readFile(file[2], 'utf8', (error, data) => {
                     vertexC = new vector3(xCoord[3], yCoord[3], zCoord[3]);
                 }
 
+                // Once three vertices are found, the lengths of the sides of triange are calculate
                 if(vertexA != "" && vertexB != "" && vertexC != ""){
                     var xAB = vertexA['x'] - vertexB['x'];
                     var xAC = vertexA['x'] - vertexC['x'];
@@ -87,7 +92,7 @@ var readFile = fs.readFile(file[2], 'utf8', (error, data) => {
   console.log(totalSurfaceArea);
 })
 
-
+// function to calculate the area of a triangle  
 const areaOfATriangle = (a, b, c) => {
     var s = (a + b + c) / 2;
     var area = (s * (s - a)*(s - b)*(s - c))**(1/2);
