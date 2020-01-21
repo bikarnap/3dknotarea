@@ -1,4 +1,6 @@
 # Area calculation of a 3D knot object
+This project presents a JavaScript script to calculate the surface area of a 3D-knot. It is very simple, and the scripts are mainly manipulation of strings.
+
 * Enter the command node area.js <file.obj> to calculate the area of a 3D-knot represented by an .obj file
 * For example: node area.js mygoodknot.obj
 
